@@ -1,0 +1,86 @@
+.inicio {
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background-color: #f1e5df;
+}
+.navbarcustom {
+  background-color: #f1e5df;
+  border-bottom: 1px solid #31241e;
+}
+.navbarcustom .nav-link {
+  color: #86654b;
+}
+.navbarcustom .nav-link.active {
+  color: #86654b;
+  font-weight: bold;
+}
+.navbar-brand{
+    color: #86654b;
+    font-weight: bold;
+}
+.texto-imagen {
+  position: absolute;
+  top: 60%;
+  left: 10%;
+  transform: translateY(-50%);
+  color: #86654b;
+  font-size: 40px;
+}
+#img1 {
+  width: 1200px;
+}
+#text1 {
+  font-size: 20px;
+  color: #31241e;
+}
+#btn-shop {
+  background-color: #af7069;
+  color: #ffffff;
+  border-radius: 30px;
+}
+.btn#btn-shop:hover {
+  transform: scale(1.05);
+  background-color: #af7069;
+  box-shadow: 0 0 12px #86654b;
+  color: #554130;;
+}
+html, body {
+  width: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden;
+}
+.container, 
+.container-fluid {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+body {
+  background-color: #f1e5df !important;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+.card{
+  background-color: #ddb1ae;
+}
+#btn-carrito {
+  background-color: #af7069;
+  color: #ffffff;
+  border-radius: 30px;
+  border-color: #af7069;
+}
+.btn#btn-carrito:hover {
+  transform: scale(1.05);
+  background-color: #af7069;
+  box-shadow: 0 0 12px #86654b;
+  color: #554130;;
+}
+.card-body {
+  color: #31241e;
+}
+#titulos{
+  color: #86654b;
+}
+.text-justificy{
+  color: #31241e;
+}
