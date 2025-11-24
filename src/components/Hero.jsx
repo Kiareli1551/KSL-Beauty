@@ -1,6 +1,6 @@
 export default function Hero() {
   return (
-    <div className="container-fluid position-relative mt-4">
+    <div className="hero-wrapper">
       <img
         src="/images/img1.jpg"
         className="img-fluid"
