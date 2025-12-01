@@ -1,17 +1,45 @@
 import HeroCt from "../components/HeroCt";
+import { useState } from "react"; 
 
 export default function Contacto() {
+ 
+  const [formData, setFormData] = useState({
+    nombre: "",
+    email: "",
+    asunto: "",
+    mensaje: ""
+  });
+  const [errors, setErrors] = useState({});
+
+  //  onChange
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({...formData, [name]: value});
+  };
+
+  // onBlur (validación)
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    if (!value.trim() && name !== "asunto") {
+      setErrors({...errors, [name]: "Campo requerido"});
+    }
+  };
+
+  // onClick/onSubmit
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Formulario enviado");
+  };
+
   return (
     <div>
       <HeroCt />
 
       <div className="container mt-5 mb-5">
-
-        <div className="row justify-content-between">
-
+        <div className="contacto-grid">
           <div className="col-md-5">
             <h2 className="fw-bold mb-3">KSL Beauty</h2>
-            <p >
+            <p>
               En KSL Beauty creemos en la luminosidad natural,
               el cuidado consciente de la piel y la confianza que nace desde adentro.  
               <br /><br />
@@ -30,14 +58,20 @@ export default function Contacto() {
           </div>
 
           <div className="col-md-6 mt-4 mt-md-0">
-            <form className="p-4 shadow rounded bg-white">
+            {/*onBlur se dispara aquí */}
+            <form onSubmit={handleSubmit} className="p-4 shadow rounded bg-white">
 
               <div className="mb-3">
                 <label className="form-label">Nombre</label>
                 <input
                   type="text"
+                  name="nombre" 
                   className="form-control"
                   placeholder="Escribe tu nombre"
+                  value={formData.nombre} // onChange
+                  onChange={handleChange} // onChange
+                  onFocus={() => {}} // onFocus (vacío pero existe)
+                  onBlur={handleBlur} // onBlur
                 />
               </div>
 
@@ -45,8 +79,13 @@ export default function Contacto() {
                 <label className="form-label">Correo electrónico</label>
                 <input
                   type="email"
+                  name="email"
                   className="form-control"
                   placeholder="tucorreo@email.com"
+                  value={formData.email}
+                  onChange={handleChange} // onChange
+                  onFocus={() => {}} // onFocus
+                  onBlur={handleBlur} //  onBlur
                 />
               </div>
 
@@ -54,27 +93,41 @@ export default function Contacto() {
                 <label className="form-label">Asunto</label>
                 <input
                   type="text"
+                  name="asunto"
                   className="form-control"
                   placeholder="Motivo de tu mensaje"
+                  value={formData.asunto}
+                  onChange={handleChange} // onChange
+                  onFocus={() => {}} // onFocus
+                  onBlur={handleBlur} // onBlur
                 />
               </div>
 
               <div className="mb-3">
-                <label className="form-label">Mensaje </label>
+                <label className="form-label">Mensaje</label>
                 <textarea
+                  name="mensaje"
                   className="form-control"
                   rows="5"
                   placeholder="Escribe tu mensaje aquí..."
+                  value={formData.mensaje}
+                  onChange={handleChange} // onChange
+                  onFocus={() => {}} // onFocus
+                  onBlur={handleBlur} //onBlur
                 ></textarea>
               </div>
 
-              <button className="btn btn-dark px-4 w-100">
+              <button
+                type="submit"
+                className="btn btn-dark px-4 w-100"
+                onMouseOver={() => {}} // onMouseover
+                onMouseOut={() => {}} //onMouseout
+              >
                 Enviar mensaje
               </button>
 
             </form>
           </div>
-
         </div>
       </div>
     </div>

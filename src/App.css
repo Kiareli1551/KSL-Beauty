@@ -38,3 +38,118 @@
 .read-the-docs {
   color: #888;
 }
+
+
+/* DISESÑO RESPONSIVO Y GRID*/
+
+/*seccion inicio*/
+.inicio-grid {
+  display: grid;
+  gap: 2rem;
+}
+
+/* seccion nosotras*/
+.nosotras-grid {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nosotras-img img {
+  width: 100%;
+  max-width: 350px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* seccion contacto */
+.contacto-grid {
+  display: grid;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+/* seccion tienda */
+.tienda-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+/* Menor a 768px  */
+@media (max-width: 767px) {
+
+  /* Inicio */
+  .inicio-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .img-style {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  /* Nosotras */
+  .nosotras-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  /* Contacto */
+  .contacto-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Tienda */
+  .tienda-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+/*768px–1023px  */
+@media (min-width: 768px) and (max-width: 1023px) {
+
+  /* Inicio */
+  .inicio-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Nosotras */
+  .nosotras-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Contacto */
+  .contacto-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Tienda */
+  .tienda-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/*Mayor o igual a 1024px*/
+@media (min-width: 1024px) {
+
+  /* Inicio */
+  .inicio-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Nosotras */
+  .nosotras-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Contacto */
+  .contacto-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Tienda */
+  .tienda-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
