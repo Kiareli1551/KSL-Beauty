@@ -7,7 +7,6 @@ header("Content-Type: application/json; charset=utf-8");
 
 session_start();
 
-// Preflight CORS
 if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
     http_response_code(200);
     exit;
@@ -18,10 +17,8 @@ $data = json_decode(file_get_contents("php://input"), true);
 $nombreUsuario = $data["nombreUsuario"] ?? "";
 $password = $data["contraseña"] ?? "";
 
-// --- ARREGLAR RUTA ---
 require __DIR__ . '/../conexion.php';
 
-// Buscar usuario por nombreUsuario
 $stmt = $conn->prepare("
     SELECT idUsuario, nombreUsuario, emailUsuario, passwordUsuario, tipoUsuario
     FROM usuario 
@@ -38,13 +35,11 @@ if ($result->num_rows === 0) {
 
 $usuario = $result->fetch_assoc();
 
-// Validar contraseña
 if (hash("sha256", $password) !== $usuario["passwordUsuario"]) {
     echo json_encode(["ok" => false, "mensaje" => "Contraseña incorrecta"]);
     exit;
 }
 
-// Guardar datos en sesión
 $_SESSION["usuario"] = [
     "id" => $usuario["idUsuario"],
     "nombre" => $usuario["nombreUsuario"],
@@ -52,9 +47,9 @@ $_SESSION["usuario"] = [
     "tipo" => $usuario["tipoUsuario"]
 ];
 
-// Respuesta
 echo json_encode([
     "ok" => true,
     "mensaje" => "Login exitoso",
     "usuario" => $_SESSION["usuario"]
 ]);
+
