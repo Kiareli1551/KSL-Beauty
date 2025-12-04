@@ -20,7 +20,6 @@ export default function FormularioUsuario() {
       [e.target.name]: e.target.value
     });
     
-    // Limpiar error del campo cuando el usuario empieza a escribir
     if (errores[e.target.name]) {
       setErrores(prev => ({
         ...prev,
@@ -33,7 +32,6 @@ export default function FormularioUsuario() {
     const nuevosErrores = {};
     
     if (mostrarRegistro) {
-      // Validación para registro
       if (!formData.nombreUsuario.trim()) {
         nuevosErrores.nombreUsuario = "El nombre de usuario es obligatorio";
       } else if (formData.nombreUsuario.length < 3) {
@@ -58,7 +56,6 @@ export default function FormularioUsuario() {
         nuevosErrores.repetirContraseña = "Las contraseñas no coinciden";
       }
     } else {
-      // Validación para login
       if (!formData.nombreUsuario.trim()) {
         nuevosErrores.nombreUsuario = "El nombre de usuario es obligatorio";
       }
@@ -84,7 +81,6 @@ export default function FormularioUsuario() {
       return;
     }
 
-    // === LOGIN ===
     if (!mostrarRegistro) {
       const respuesta = await login(formData.nombreUsuario, formData.contraseña);
 
@@ -99,7 +95,6 @@ export default function FormularioUsuario() {
       return;
     }
 
-    // === REGISTRO ===
     if (mostrarRegistro) {
       try {
         const respuesta = await fetch("http://localhost/ksl-backend/usuario/registrarUsuario.php", {
@@ -123,7 +118,6 @@ export default function FormularioUsuario() {
           }
         } else {
           alert("¡Cuenta creada exitosamente! Ahora puedes iniciar sesión.");
-          // Cambiar a modo login y limpiar formulario
           setMostrarRegistro(false);
           setFormData({
             nombreUsuario: "",
@@ -174,7 +168,6 @@ export default function FormularioUsuario() {
             </div>
           )}
 
-          {/* Nombre de usuario */}
           <div className="mb-3">
             <label className="form-label">Nombre de usuario *</label>
             <input
@@ -190,7 +183,6 @@ export default function FormularioUsuario() {
             )}
           </div>
 
-          {/* Email: solo en registro */}
           {mostrarRegistro && (
             <div className="mb-3">
               <label className="form-label">Correo electrónico *</label>
@@ -208,7 +200,6 @@ export default function FormularioUsuario() {
             </div>
           )}
 
-          {/* Contraseña */}
           <div className="mb-3">
             <label className="form-label">Contraseña *</label>
             <input
@@ -227,7 +218,6 @@ export default function FormularioUsuario() {
             )}
           </div>
 
-          {/* Repetir contraseña: solo en registro */}
           {mostrarRegistro && (
             <div className="mb-3">
               <label className="form-label">Repetir contraseña *</label>
@@ -264,4 +254,5 @@ export default function FormularioUsuario() {
       </div>
     </div>
   );
+
 }
