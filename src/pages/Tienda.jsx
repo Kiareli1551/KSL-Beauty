@@ -23,12 +23,10 @@ export default function Tienda() {
 
   return (
     <div className="container mt-4">
-      {/* Productos */}
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
         {productos.map((p) => (<ProductosCard key={p.idProducto} producto={p} />))}
       </div>
 
-      {/* Paginador */}
       <div className="d-flex justify-content-center mt-4 mb-5">
         <button className="btn btn-outline-dark mx-2"
           disabled={pagina === 1}
