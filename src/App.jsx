@@ -12,17 +12,12 @@ export default function App() {
   return (
     <>
       <Navbar />
-
       <Routes>
         <Route path="/" element={<Inicio />} />
         <Route path="/tienda" element={<Tienda />} />
         <Route path="/nosotras" element={<Nosotras />} />
         <Route path="/contacto" element={<Contacto />} />
-
-        {/* Página que controla login / perfil / admin */}
         <Route path="/usuario" element={<Usuario />} />
-
-        {/* Área del cliente */}
         <Route
           path="/perfil"
           element={
@@ -31,8 +26,6 @@ export default function App() {
             </ProtectedRoute>
           }
         />
-
-        {/* Área del administrador */}
         <Route
           path="/admin"
           element={
