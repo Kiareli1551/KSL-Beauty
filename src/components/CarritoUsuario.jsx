@@ -68,14 +68,12 @@ export default function CarritoUsuario() {
         </div>
       )}
 
-      {/* LISTA DEL CARRITO */}
       {productos.map((p) => (
         <div
           key={p.idProducto}
           className="d-flex align-items-center border rounded p-2 mb-2"
           style={{ background: "#fafafa" }}
         >
-          {/* Imagen */}
           <img
             src={p.imagenProducto || "/images/Imagen_no_disponible.png"}
             alt={p.nombreProducto}
@@ -87,13 +85,11 @@ export default function CarritoUsuario() {
             }}
           />
 
-          {/* Información */}
           <div className="flex-grow-1">
             <h6 className="m-0">{p.nombreProducto}</h6>
             <small className="text-muted">Precio: ${p.precioProducto}</small>
             <br />
 
-            {/* CANTIDAD */}
             {editando === p.idProducto ? (
               <input
                 type="number"
@@ -112,13 +108,11 @@ export default function CarritoUsuario() {
               </span>
             )}
 
-            {/* PRECIO TOTAL */}
             <p className="mt-1 fw-bold">
               Total: ${(p.precioProducto * p.cantidadUsuarioProducto).toFixed(2)}
             </p>
           </div>
 
-          {/* BOTONES */}
           <div className="text-end">
             {editando === p.idProducto ? (
               <>
@@ -159,7 +153,6 @@ export default function CarritoUsuario() {
         </div>
       ))}
 
-      {/* TOTAL COMPRA */}
       <div className="mt-4 p-3 border rounded bg-light">
         <h4>Total a pagar: ${totalCompra.toFixed(2)}</h4>
 
@@ -174,3 +167,4 @@ export default function CarritoUsuario() {
     </div>
   );
 }
+
