@@ -5,16 +5,13 @@ header("Access-Control-Allow-Headers: Content-Type");
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Content-Type: application/json; charset=utf-8");
 
-// CORS preflight
 if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
     http_response_code(200);
     exit;
 }
 
-// Obtener datos del request
 $data = json_decode(file_get_contents("php://input"), true);
 
-// Validar datos básicos
 if (empty($data["nombreUsuario"]) || empty($data["emailUsuario"]) || empty($data["contraseña"])) {
     echo json_encode([
         "ok" => false, 
@@ -23,11 +20,9 @@ if (empty($data["nombreUsuario"]) || empty($data["emailUsuario"]) || empty($data
     exit;
 }
 
-// Conexión a la base de datos
 require __DIR__ . '/../conexion.php';
 
 try {
-    // Verificar si el nombre de usuario ya existe
     $stmtCheckUsuario = $conn->prepare("SELECT idUsuario FROM usuario WHERE nombreUsuario = ?");
     $stmtCheckUsuario->bind_param("s", $data["nombreUsuario"]);
     $stmtCheckUsuario->execute();
@@ -43,7 +38,6 @@ try {
     }
     $stmtCheckUsuario->close();
     
-    // Verificar si el email ya existe
     $stmtCheckEmail = $conn->prepare("SELECT idUsuario FROM usuario WHERE emailUsuario = ?");
     $stmtCheckEmail->bind_param("s", $data["emailUsuario"]);
     $stmtCheckEmail->execute();
@@ -59,19 +53,15 @@ try {
     }
     $stmtCheckEmail->close();
     
-    // Obtener el próximo ID para usuario
     $queryMaxUsuario = "SELECT MAX(idUsuario) as maxId FROM usuario";
     $resultMaxUsuario = $conn->query($queryMaxUsuario);
     $rowMaxUsuario = $resultMaxUsuario->fetch_assoc();
     $nuevoIdUsuario = ($rowMaxUsuario["maxId"] ?? 0) + 1;
     
-    // Encriptar contraseña con SHA-256
     $passwordHash = hash('sha256', $data["contraseña"]);
     
-    // Tipo de usuario (siempre 'cliente')
     $tipoUsuario = "cliente";
     
-    // Insertar el nuevo usuario
     $stmtInsert = $conn->prepare("
         INSERT INTO usuario (
             idUsuario, 
@@ -108,4 +98,5 @@ try {
         "mensaje" => "Error en el servidor: " . $e->getMessage()
     ]);
 }
+
 ?>
