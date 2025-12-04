@@ -9,12 +9,10 @@ export default function Usuario() {
 
   if (cargando) return <p>Cargando...</p>;
 
-  // SI NO ESTÁ LOGUEADO → mostrar login/registro
   if (!usuario) {
     return <FormularioUsuario />;
   }
 
-  // SI ESTÁ LOGUEADO → mostrar su perfil
   return (
     <div className="container my-5">
       <ClientePanel/>
@@ -26,3 +24,4 @@ export default function Usuario() {
     </div>
   );
 }
+
