@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 
 export default function ModificarProducto() {
-  // Estados para la búsqueda y datos del formulario
   const [idProductoBuscar, setIdProductoBuscar] = useState("");
   const [producto, setProducto] = useState(null);
   const [cargandoBusqueda, setCargandoBusqueda] = useState(false);
@@ -9,7 +8,6 @@ export default function ModificarProducto() {
   const [error, setError] = useState("");
   const [exito, setExito] = useState("");
   
-  // Estados para los datos del formulario
   const [formData, setFormData] = useState({
     nombreProducto: "",
     descripcionProducto: "",
@@ -21,12 +19,10 @@ export default function ModificarProducto() {
     nuevaMarca: ""
   });
 
-  // Estados para datos de la base de datos
   const [categorias, setCategorias] = useState([]);
   const [marcas, setMarcas] = useState([]);
   const [mostrarNuevaMarca, setMostrarNuevaMarca] = useState(false);
 
-  // Cargar categorías y marcas al inicio
   useEffect(() => {
     cargarDatos();
   }, []);
@@ -35,11 +31,9 @@ export default function ModificarProducto() {
     try {
       setCargandoFormulario(true);
       
-      // Cargar categorías
       const resCategorias = await fetch("http://localhost/ksl-backend/producto/obtenerCategoria.php");
       const dataCategorias = await resCategorias.json();
       
-      // Cargar marcas
       const resMarcas = await fetch("http://localhost/ksl-backend/producto/obtenerMarca.php");
       const dataMarcas = await resMarcas.json();
       
@@ -80,7 +74,6 @@ export default function ModificarProducto() {
       if (resultado.ok) {
         setProducto(resultado.producto);
         
-        // Llenar el formulario con los datos del producto
         setFormData({
           nombreProducto: resultado.producto.nombreProducto,
           descripcionProducto: resultado.producto.descripcionProducto,
@@ -92,12 +85,9 @@ export default function ModificarProducto() {
           nuevaMarca: ""
         });
         
-        // Verificar si la marca del producto existe en la lista de marcas
         const marcaExiste = marcas.some(marca => marca.idMarca === resultado.producto.idMarca);
         if (!marcaExiste) {
-          // Si la marca no existe en la lista, mostrar como "nueva" y cargar su nombre
           setMostrarNuevaMarca(true);
-          // Necesitamos obtener el nombre de la marca para mostrarlo
           obtenerNombreMarca(resultado.producto.idMarca);
         }
         
@@ -144,7 +134,6 @@ export default function ModificarProducto() {
       [name]: value
     }));
 
-    // Si cambia el campo idMarca y es "nueva", mostrar campo para nueva marca
     if (name === "idMarca") {
       setMostrarNuevaMarca(value === "nueva");
       if (value !== "nueva") {
@@ -158,7 +147,6 @@ export default function ModificarProducto() {
       return "Primero debes buscar un producto";
     }
     
-    // Validar campos obligatorios
     if (!formData.nombreProducto.trim()) {
       return "El nombre del producto es obligatorio";
     }
@@ -189,7 +177,6 @@ export default function ModificarProducto() {
     setError("");
     setExito("");
 
-    // Validar formulario
     const errorValidacion = validarFormulario();
     if (errorValidacion) {
       setError(errorValidacion);
@@ -197,7 +184,6 @@ export default function ModificarProducto() {
     }
 
     try {
-      // Preparar datos para enviar
       const datosEnviar = {
         idProducto: parseInt(idProductoBuscar),
         nombreProducto: formData.nombreProducto.trim(),
@@ -210,7 +196,6 @@ export default function ModificarProducto() {
         nuevaMarca: formData.nuevaMarca.trim()
       };
 
-      // Enviar datos al backend para actualizar
       const respuesta = await fetch("http://localhost/ksl-backend/producto/modificarProducto.php", {
         method: "POST",
         headers: {
@@ -224,12 +209,10 @@ export default function ModificarProducto() {
 
       if (resultado.ok) {
         setExito(resultado.mensaje);
-        // Actualizar el producto en estado
         setProducto(prev => ({
           ...prev,
           ...datosEnviar
         }));
-        // Recargar marcas si se añadió una nueva
         if (formData.idMarca === "nueva") {
           cargarDatos();
         }
@@ -267,7 +250,6 @@ export default function ModificarProducto() {
 
       if (resultado.ok) {
         setExito(resultado.mensaje);
-        // Limpiar todo
         setIdProductoBuscar("");
         setProducto(null);
         setFormData({
@@ -349,7 +331,6 @@ export default function ModificarProducto() {
                 </div>
               )}
 
-              {/* Sección de búsqueda */}
               <div className="mb-4 p-3 border rounded bg-light">
                 <h5>Buscar Producto por ID</h5>
                 <form onSubmit={buscarProducto} className="row g-2">
@@ -403,10 +384,8 @@ export default function ModificarProducto() {
                 )}
               </div>
 
-              {/* Formulario de modificación (solo visible cuando hay producto) */}
               {producto && (
                 <form onSubmit={handleActualizar}>
-                  {/* Nombre del Producto */}
                   <div className="mb-3">
                     <label className="form-label fw-bold">Nombre del Producto *</label>
                     <input
@@ -420,7 +399,6 @@ export default function ModificarProducto() {
                     />
                   </div>
 
-                  {/* Descripción */}
                   <div className="mb-3">
                     <label className="form-label fw-bold">Descripción *</label>
                     <textarea
@@ -435,7 +413,6 @@ export default function ModificarProducto() {
                   </div>
 
                   <div className="row">
-                    {/* Precio */}
                     <div className="col-md-6 mb-3">
                       <label className="form-label fw-bold">Precio ($) *</label>
                       <input
@@ -451,7 +428,6 @@ export default function ModificarProducto() {
                       />
                     </div>
 
-                    {/* Cantidad */}
                     <div className="col-md-6 mb-3">
                       <label className="form-label fw-bold">Cantidad en Stock *</label>
                       <input
@@ -467,7 +443,6 @@ export default function ModificarProducto() {
                     </div>
                   </div>
 
-                  {/* Imagen (URL) */}
                   <div className="mb-3">
                     <label className="form-label fw-bold">
                       URL de la Imagen <small className="text-muted">(Opcional)</small>
@@ -485,7 +460,6 @@ export default function ModificarProducto() {
                     </small>
                   </div>
 
-                  {/* Categoría */}
                   <div className="mb-3">
                     <label className="form-label fw-bold">Categoría *</label>
                     <select
@@ -504,7 +478,6 @@ export default function ModificarProducto() {
                     </select>
                   </div>
 
-                  {/* Marca */}
                   <div className="mb-3">
                     <label className="form-label fw-bold">Marca *</label>
                     <select
@@ -524,7 +497,6 @@ export default function ModificarProducto() {
                     </select>
                   </div>
 
-                  {/* Campo para nueva marca (solo si se selecciona "Añadir nueva marca") */}
                   {mostrarNuevaMarca && (
                     <div className="mb-3">
                       <label className="form-label fw-bold">Nombre de la Nueva Marca *</label>
@@ -540,7 +512,6 @@ export default function ModificarProducto() {
                     </div>
                   )}
 
-                  {/* Botones de acción */}
                   <div className="d-flex gap-2 mt-4">
                     <button type="submit" className="btn btn-primary flex-grow-1 py-2">
                       <i className="bi bi-check-circle me-2"></i>
@@ -560,7 +531,6 @@ export default function ModificarProducto() {
                       type="button" 
                       className="btn btn-outline-secondary"
                       onClick={() => {
-                        // Restaurar valores originales
                         setFormData({
                           nombreProducto: producto.nombreProducto,
                           descripcionProducto: producto.descripcionProducto,
@@ -572,7 +542,6 @@ export default function ModificarProducto() {
                           nuevaMarca: ""
                         });
                         
-                        // Restaurar estado de nueva marca
                         const marcaExiste = marcas.some(marca => marca.idMarca === producto.idMarca);
                         setMostrarNuevaMarca(!marcaExiste);
                         if (!marcaExiste) {
@@ -593,7 +562,6 @@ export default function ModificarProducto() {
             </div>
           </div>
 
-          {/* Información adicional */}
           <div className="mt-4">
             <div className="alert alert-warning">
               <h5><i className="bi bi-exclamation-triangle me-2"></i>Advertencia importante</h5>
@@ -609,4 +577,5 @@ export default function ModificarProducto() {
       </div>
     </div>
   );
+
 }
