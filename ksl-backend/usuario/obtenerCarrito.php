@@ -7,7 +7,6 @@ header("Content-Type: application/json; charset=utf-8");
 
 session_start();
 
-// CORS preflight
 if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
     http_response_code(200);
     exit;
@@ -20,7 +19,6 @@ if (!isset($_SESSION["usuario"]["id"])) {
 
 $idUsuario = $_SESSION["usuario"]["id"];
 
-// conexión
 require __DIR__ . '/../conexion.php';
 
 $query = $conn->prepare("
@@ -46,3 +44,4 @@ while ($row = $result->fetch_assoc()) {
 
 echo json_encode(["ok" => true, "productos" => $productos]);
 ?>
+
