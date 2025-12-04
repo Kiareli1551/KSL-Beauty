@@ -17,7 +17,6 @@ export default function ProductosCard({ producto }) {
   };
 
   const handleAddToCart = async () => {
-    // Si no hay usuario → pedir login
     if (!usuario) {
       alert("Debes iniciar sesión para añadir productos al carrito.");
       return;
@@ -47,7 +46,6 @@ export default function ProductosCard({ producto }) {
     <div className="col">
       <div className="card h-100 shadow-sm">
 
-        {/* Imagen */}
         <div
           style={{
             width: "100%",
@@ -91,7 +89,6 @@ export default function ProductosCard({ producto }) {
 
           <h6 className="mt-auto fw-bold">${producto.precioProducto}</h6>
 
-          {/* Selector de cantidad */}
           <input
             type="number"
             min="1"
@@ -103,7 +100,6 @@ export default function ProductosCard({ producto }) {
             className="form-control mt-2"
           />
 
-          {/* Botón */}
           <button
             className="btn btn-dark w-100 mt-3"
             onClick={handleAddToCart}
