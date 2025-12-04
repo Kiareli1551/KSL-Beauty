@@ -9,7 +9,6 @@ export default function AdminPanel() {
     <div className="container my-5">
       <h1 className="text-center mb-4">Panel de Administración</h1>
       
-      {/* Selector de modo */}
       <div className="row justify-content-center mb-4">
         <div className="col-md-8 col-lg-6">
           <div className="btn-group w-100 shadow-sm" role="group">
@@ -41,7 +40,6 @@ export default function AdminPanel() {
         </div>
       </div>
       
-      {/* Contenido */}
       <div className="row justify-content-center">
         <div className="col-12">
           {tabActiva === "añadir" ? <AñadirProducto /> : <ModificarProducto />}
@@ -49,4 +47,5 @@ export default function AdminPanel() {
       </div>
     </div>
   );
+
 }
