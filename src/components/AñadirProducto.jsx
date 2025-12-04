@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 
 export default function AñadirProducto() {
-  // Estados para los datos del formulario
   const [formData, setFormData] = useState({
     nombreProducto: "",
     descripcionProducto: "",
@@ -13,7 +12,6 @@ export default function AñadirProducto() {
     nuevaMarca: ""
   });
 
-  // Estados para datos de la base de datos
   const [categorias, setCategorias] = useState([]);
   const [marcas, setMarcas] = useState([]);
   const [cargando, setCargando] = useState(true);
@@ -21,7 +19,6 @@ export default function AñadirProducto() {
   const [exito, setExito] = useState("");
   const [mostrarNuevaMarca, setMostrarNuevaMarca] = useState(false);
 
-  // Cargar categorías y marcas al inicio
   useEffect(() => {
     cargarDatos();
   }, []);
@@ -30,11 +27,9 @@ export default function AñadirProducto() {
     try {
       setCargando(true);
       
-      // Cargar categorías
       const resCategorias = await fetch("http://localhost/ksl-backend/producto/obtenerCategoria.php");
       const dataCategorias = await resCategorias.json();
       
-      // Cargar marcas
       const resMarcas = await fetch("http://localhost/ksl-backend/producto/obtenerMarca.php");
       const dataMarcas = await resMarcas.json();
       
@@ -55,7 +50,6 @@ export default function AñadirProducto() {
       [name]: value
     }));
 
-    // Si cambia el campo idMarca y es "nueva", mostrar campo para nueva marca
     if (name === "idMarca") {
       setMostrarNuevaMarca(value === "nueva");
       if (value !== "nueva") {
@@ -65,7 +59,6 @@ export default function AñadirProducto() {
   };
 
   const validarFormulario = () => {
-    // Validar campos obligatorios
     if (!formData.nombreProducto.trim()) {
       return "El nombre del producto es obligatorio";
     }
@@ -96,7 +89,6 @@ export default function AñadirProducto() {
     setError("");
     setExito("");
 
-    // Validar formulario
     const errorValidacion = validarFormulario();
     if (errorValidacion) {
       setError(errorValidacion);
@@ -104,7 +96,6 @@ export default function AñadirProducto() {
     }
 
     try {
-      // Preparar datos para enviar
       const datosEnviar = {
         nombreProducto: formData.nombreProducto.trim(),
         descripcionProducto: formData.descripcionProducto.trim(),
@@ -116,7 +107,6 @@ export default function AñadirProducto() {
         nuevaMarca: formData.nuevaMarca.trim()
       };
 
-      // Enviar datos al backend
       const respuesta = await fetch("http://localhost/ksl-backend/producto/añadirProducto.php", {
         method: "POST",
         headers: {
@@ -130,7 +120,6 @@ export default function AñadirProducto() {
 
       if (resultado.ok) {
         setExito(resultado.mensaje);
-        // Limpiar formulario
         setFormData({
           nombreProducto: "",
           descripcionProducto: "",
@@ -142,7 +131,6 @@ export default function AñadirProducto() {
           nuevaMarca: ""
         });
         setMostrarNuevaMarca(false);
-        // Recargar marcas si se añadió una nueva
         if (formData.idMarca === "nueva") {
           cargarDatos();
         }
@@ -197,7 +185,6 @@ export default function AñadirProducto() {
               )}
 
               <form onSubmit={handleSubmit}>
-                {/* Nombre del Producto */}
                 <div className="mb-3">
                   <label className="form-label fw-bold">Nombre del Producto *</label>
                   <input
@@ -211,7 +198,6 @@ export default function AñadirProducto() {
                   />
                 </div>
 
-                {/* Descripción */}
                 <div className="mb-3">
                   <label className="form-label fw-bold">Descripción *</label>
                   <textarea
@@ -226,7 +212,6 @@ export default function AñadirProducto() {
                 </div>
 
                 <div className="row">
-                  {/* Precio */}
                   <div className="col-md-6 mb-3">
                     <label className="form-label fw-bold">Precio ($) *</label>
                     <input
@@ -242,7 +227,6 @@ export default function AñadirProducto() {
                     />
                   </div>
 
-                  {/* Cantidad */}
                   <div className="col-md-6 mb-3">
                     <label className="form-label fw-bold">Cantidad en Stock *</label>
                     <input
@@ -258,7 +242,6 @@ export default function AñadirProducto() {
                   </div>
                 </div>
 
-                {/* Imagen (URL) */}
                 <div className="mb-3">
                   <label className="form-label fw-bold">
                     URL de la Imagen <small className="text-muted">(Opcional)</small>
@@ -276,7 +259,6 @@ export default function AñadirProducto() {
                   </small>
                 </div>
 
-                {/* Categoría */}
                 <div className="mb-3">
                   <label className="form-label fw-bold">Categoría *</label>
                   <select
@@ -295,7 +277,6 @@ export default function AñadirProducto() {
                   </select>
                 </div>
 
-                {/* Marca */}
                 <div className="mb-3">
                   <label className="form-label fw-bold">Marca *</label>
                   <select
@@ -315,7 +296,6 @@ export default function AñadirProducto() {
                   </select>
                 </div>
 
-                {/* Campo para nueva marca (solo si se selecciona "Añadir nueva marca") */}
                 {mostrarNuevaMarca && (
                   <div className="mb-3">
                     <label className="form-label fw-bold">Nombre de la Nueva Marca *</label>
@@ -331,7 +311,6 @@ export default function AñadirProducto() {
                   </div>
                 )}
 
-                {/* Botones */}
                 <div className="d-flex gap-2 mt-4">
                   <button type="submit" className="btn btn-dark flex-grow-1 py-2">
                     <i className="bi bi-plus-circle me-2"></i>
@@ -366,7 +345,6 @@ export default function AñadirProducto() {
             </div>
           </div>
 
-          {/* Información adicional */}
           <div className="mt-4">
             <div className="alert alert-info">
               <h5><i className="bi bi-info-circle me-2"></i>Información importante</h5>
@@ -375,7 +353,7 @@ export default function AñadirProducto() {
                 <li>Las categorías no se pueden crear desde aquí</li>
                 <li>Las marcas se pueden crear directamente en este formulario</li>
                 <li>La imagen debe ser un enlace URL válido</li>
-                <li>Si no se proporciona imagen, se usará "default.jpg"</li>
+                <li>Si no se proporciona imagen, se usará una default</li>
               </ul>
             </div>
           </div>
@@ -383,4 +361,5 @@ export default function AñadirProducto() {
       </div>
     </div>
   );
+
 }
