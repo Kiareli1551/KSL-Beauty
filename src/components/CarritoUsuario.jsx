@@ -118,12 +118,14 @@ export default function CarritoUsuario() {
               <>
                 <button
                   className="btn btn-success btn-sm me-2"
+                  id="btn-shop"
                   onClick={() => guardarCambio(p.idProducto)}
                 >
                   Guardar
                 </button>
                 <button
                   className="btn btn-secondary btn-sm"
+                  id="btn-shop"
                   onClick={() => setEditando(null)}
                 >
                   Cancelar
@@ -133,6 +135,7 @@ export default function CarritoUsuario() {
               <>
                 <button
                   className="btn btn-primary btn-sm me-2"
+                  id="btn-shop"
                   onClick={() => {
                     setEditando(p.idProducto);
                     setCantidadTemp(p.cantidadUsuarioProducto);
@@ -143,6 +146,7 @@ export default function CarritoUsuario() {
 
                 <button
                   className="btn btn-danger btn-sm"
+                  id="btn-shop"
                   onClick={() => eliminarProducto(p.idProducto)}
                 >
                   Eliminar
@@ -158,6 +162,7 @@ export default function CarritoUsuario() {
 
         <button
           className="btn btn-success w-100 mt-3"
+          id="btn-shop"
           disabled={productos.length === 0}
         >
           Comprar

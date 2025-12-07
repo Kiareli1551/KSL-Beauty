@@ -26,13 +26,13 @@ export default function AñadirProducto() {
   const cargarDatos = async () => {
     try {
       setCargando(true);
-      
+
       const resCategorias = await fetch("http://localhost/ksl-backend/producto/obtenerCategoria.php");
       const dataCategorias = await resCategorias.json();
-      
+
       const resMarcas = await fetch("http://localhost/ksl-backend/producto/obtenerMarca.php");
       const dataMarcas = await resMarcas.json();
-      
+
       setCategorias(dataCategorias);
       setMarcas(dataMarcas);
       setCargando(false);
@@ -44,7 +44,7 @@ export default function AñadirProducto() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    
+
     setFormData(prev => ({
       ...prev,
       [name]: value
@@ -80,7 +80,7 @@ export default function AñadirProducto() {
     if (!formData.idMarca || (formData.idMarca !== "nueva" && !formData.idMarca)) {
       return "Debes seleccionar o crear una marca";
     }
-    
+
     return null;
   };
 
@@ -160,25 +160,25 @@ export default function AñadirProducto() {
             <div className="card-header bg-dark text-white">
               <h4 className="mb-0">Añadir Nuevo Producto</h4>
             </div>
-            
+
             <div className="card-body">
               {error && (
                 <div className="alert alert-danger alert-dismissible fade show" role="alert">
                   {error}
-                  <button 
-                    type="button" 
-                    className="btn-close" 
+                  <button
+                    type="button"
+                    className="btn-close"
                     onClick={() => setError("")}
                   ></button>
                 </div>
               )}
-              
+
               {exito && (
                 <div className="alert alert-success alert-dismissible fade show" role="alert">
                   {exito}
-                  <button 
-                    type="button" 
-                    className="btn-close" 
+                  <button
+                    type="button"
+                    className="btn-close"
                     onClick={() => setExito("")}
                   ></button>
                 </div>
@@ -312,13 +312,18 @@ export default function AñadirProducto() {
                 )}
 
                 <div className="d-flex gap-2 mt-4">
-                  <button type="submit" className="btn btn-dark flex-grow-1 py-2">
+                  <button
+                    type="submit"
+                    className="btn btn-dark flex-grow-1 py-2"
+                    id="btn-shop"
+                  >
                     <i className="bi bi-plus-circle me-2"></i>
                     Añadir Producto
                   </button>
-                  <button 
-                    type="button" 
+                  <button
+                    type="button"
                     className="btn btn-outline-secondary"
+                    id="btn-shop"  
                     onClick={() => {
                       setFormData({
                         nombreProducto: "",

@@ -8,7 +8,7 @@ export default function Hero() {
         />
 
         <div className="texto-imagen1">
-          <h2>
+          <h2 id="titulos">
             Kosmética<br />
             Suavidad<br />
             Luminosidad

@@ -28,19 +28,25 @@ export default function Tienda() {
       </div>
 
       <div className="d-flex justify-content-center mt-4 mb-5">
-        <button className="btn btn-outline-dark mx-2"
+        <button 
+          id="btn-shop"  
+          className="btn btn-outline-dark mx-2"
           disabled={pagina === 1}
           onClick={() => setPagina(pagina - 1)}
-        >&laquo; Anterior
+        >
+          &laquo; Anterior
         </button>
 
         <span className="px-3 py-2">Página {pagina} de {totalPaginas}</span>
 
-        <button className="btn btn-outline-dark mx-2"
+        <button 
+          id="btn-shop"  
+          className="btn btn-outline-dark mx-2"
           disabled={pagina === totalPaginas}
           onClick={() => setPagina(pagina + 1)}
-        >Siguiente &raquo;</button>
-
+        >
+          Siguiente &raquo;
+        </button>
       </div>
     </div>
   );

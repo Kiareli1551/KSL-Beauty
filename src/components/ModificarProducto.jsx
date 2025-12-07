@@ -349,6 +349,7 @@ export default function ModificarProducto() {
                     <button 
                       type="submit" 
                       className="btn btn-primary w-100"
+                      id="btn-shop"
                       disabled={cargandoBusqueda}
                     >
                       {cargandoBusqueda ? (
@@ -368,13 +369,14 @@ export default function ModificarProducto() {
                 
                 {producto && (
                   <div className="mt-3 p-2 border rounded bg-white">
-                    <p className="mb-0">
+                    <p className="mb-0" id="textN">
                       <strong>Producto encontrado:</strong> {producto.nombreProducto}
                       <br />
                       <small className="text-muted">ID: {producto.idProducto} | Precio: ${producto.precioProducto}</small>
                     </p>
                     <button 
                       className="btn btn-sm btn-outline-secondary mt-2"
+                      id="btn-shop"
                       onClick={resetearBusqueda}
                     >
                       <i className="bi bi-x-circle me-1"></i>
@@ -513,7 +515,7 @@ export default function ModificarProducto() {
                   )}
 
                   <div className="d-flex gap-2 mt-4">
-                    <button type="submit" className="btn btn-primary flex-grow-1 py-2">
+                    <button type="submit" className="btn btn-primary flex-grow-1 py-2"  id="btn-shop">
                       <i className="bi bi-check-circle me-2"></i>
                       Actualizar Producto
                     </button>
@@ -521,6 +523,7 @@ export default function ModificarProducto() {
                     <button 
                       type="button" 
                       className="btn btn-danger"
+                      id="btn-shop"
                       onClick={handleEliminar}
                     >
                       <i className="bi bi-trash me-2"></i>
@@ -530,6 +533,7 @@ export default function ModificarProducto() {
                     <button 
                       type="button" 
                       className="btn btn-outline-secondary"
+                      id="btn-shop"
                       onClick={() => {
                         setFormData({
                           nombreProducto: producto.nombreProducto,

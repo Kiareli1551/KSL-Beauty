@@ -15,7 +15,7 @@ export default function Hero() {
         />
 
         <div className="texto-imagen1">
-          <h3>CONTACTO</h3>
+          <h3 id="titulos">CONTACTO</h3>
         </div>
       </div>
     </div>

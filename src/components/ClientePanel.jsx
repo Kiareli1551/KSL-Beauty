@@ -14,7 +14,7 @@ export default function ClientePanel() {
               Bienvenido, <strong>{usuario.nombre}</strong>
             </h2>
 
-            <p className="text-center text-muted">
+            <p className="text-center text-muted" id="textN">
               Información de tu perfil
             </p>
 
@@ -22,17 +22,18 @@ export default function ClientePanel() {
 
             <div className="mb-3">
               <label className="fw-bold">Nombre de usuario:</label>
-              <p className="mb-2">{usuario.nombre}</p>
+              <p className="mb-2" id="textN">{usuario.nombre}</p>
             </div>
 
             <div className="mb-3">
               <label className="fw-bold">Correo:</label>
-              <p className="mb-2">{usuario.email}</p>
+              <p className="mb-2" id="textN">{usuario.email}</p>
             </div>
 
             <div className="d-grid mt-4">
               <button
                 className="btn btn-danger rounded-pill py-2"
+                id="btn-shop"
                 onClick={logout}>
                 Cerrar sesión
               </button>

@@ -78,11 +78,11 @@ export default function ProductosCard({ producto }) {
         <div className="card-body d-flex flex-column">
           <h5 className="card-title">{producto.nombreProducto}</h5>
 
-          <p className="card-text text-muted">
+          <p className="card-text text-muted" id="textN">
             {recortarTexto(producto.descripcionProducto, 90)}
           </p>
 
-          <p className="card-text small">
+          <p className="card-text small" id="textN">
             <strong>Marca:</strong> {producto.nombreMarca}<br />
             <strong>Categoría:</strong> {producto.nombreCategoria}
           </p>
@@ -102,6 +102,7 @@ export default function ProductosCard({ producto }) {
 
           <button
             className="btn btn-dark w-100 mt-3"
+            id="btn-shop"
             onClick={handleAddToCart}
           >
             Añadir al carrito
