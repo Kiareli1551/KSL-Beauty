@@ -38,7 +38,7 @@ export default function Contacto() {
       <div className="container mt-5 mb-5">
         <div className="contacto-grid">
           <div className="col-md-5">
-            <h2 className="fw-bold mb-3">KSL Beauty</h2>
+            <h2 id="titulos" className="fw-bold mb-3">KSL Beauty</h2>
             <p>
               En KSL Beauty creemos en la luminosidad natural,
               el cuidado consciente de la piel y la confianza que nace desde adentro.  
@@ -50,7 +50,7 @@ export default function Contacto() {
             </p>
 
             <div className="mt-4">
-              <h5 className="fw-bold">Información de contacto</h5>
+              <h5 id="titulos" className="fw-bold">Información de contacto</h5>
               <p className="mb-1"> contacto@kslbeauty.com</p>
               <p className="mb-1"> +52 656-124-5678</p>
               <p>CD Juárez — Envíos a toda la República Mexicana</p>
@@ -62,7 +62,7 @@ export default function Contacto() {
             <form onSubmit={handleSubmit} className="p-4 shadow rounded bg-white">
 
               <div className="mb-3">
-                <label className="form-label">Nombre</label>
+                <label id="textN" className="form-label">Nombre</label>
                 <input
                   type="text"
                   name="nombre" 
@@ -76,7 +76,7 @@ export default function Contacto() {
               </div>
 
               <div className="mb-3">
-                <label className="form-label">Correo electrónico</label>
+                <label id="textN" className="form-label">Correo electrónico</label>
                 <input
                   type="email"
                   name="email"
@@ -90,7 +90,7 @@ export default function Contacto() {
               </div>
 
               <div className="mb-3">
-                <label className="form-label">Asunto</label>
+                <label id="textN" className="form-label">Asunto</label>
                 <input
                   type="text"
                   name="asunto"
@@ -104,7 +104,7 @@ export default function Contacto() {
               </div>
 
               <div className="mb-3">
-                <label className="form-label">Mensaje</label>
+                <label id="textN" className="form-label">Mensaje</label>
                 <textarea
                   name="mensaje"
                   className="form-control"
@@ -117,7 +117,7 @@ export default function Contacto() {
                 ></textarea>
               </div>
 
-              <button
+              <button id="btn-shop"
                 type="submit"
                 className="btn btn-dark px-4 w-100"
                 onMouseOver={() => {}} // onMouseover

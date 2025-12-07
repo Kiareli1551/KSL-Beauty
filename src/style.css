@@ -22,11 +22,9 @@
   font-weight: bold;
 }
 
-.texto-imagen {
+.texto-imagen1 {
   position: absolute;
   top: 60%;
-  left: 10%;
-  transform: translateY(-50%);
   color: #86654b;
   font-size: 40px;
 }
@@ -37,6 +35,10 @@
 
 #text1 {
   font-size: 20px;
+  color: #31241e;
+}
+
+#textN {
   color: #31241e;
 }
 
@@ -92,6 +94,20 @@ body {
   box-shadow: 0 0 12px #86654b;
   color: #554130;
   ;
+}
+
+.btn#btnNueva{
+  color: #554130;
+  outline-style:solid;
+  outline-color: #554130;
+  border-radius: 30px;
+}
+
+.btn#btnNueva:hover{
+   transform: scale(1.05);
+   outline-color: #af7069;
+   color: #af7069;
+   box-shadow: 0 0 12px #86654b;
 }
 
 .card-body {

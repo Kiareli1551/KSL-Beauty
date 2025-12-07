@@ -139,7 +139,7 @@ export default function FormularioUsuario() {
       <div className="col-md-6 mx-auto">
 
         <button
-          className="btn btn-outline-dark w-100 mb-4"
+          className="btn w-100 mb-4" id="btnNueva"
           onClick={() => {
             setMostrarRegistro(!mostrarRegistro);
             setErrores({});
@@ -158,7 +158,7 @@ export default function FormularioUsuario() {
         </button>
 
         <form onSubmit={handleSubmit} className="p-4 shadow rounded bg-white">
-          <h3 className="text-center mb-4">
+          <h3 id="titulos" className="text-center mb-4">
             {mostrarRegistro ? "Crear Cuenta" : "Iniciar Sesión"}
           </h3>
 
@@ -169,7 +169,7 @@ export default function FormularioUsuario() {
           )}
 
           <div className="mb-3">
-            <label className="form-label">Nombre de usuario *</label>
+            <label id="textN" className="form-label">Nombre de usuario *</label>
             <input
               type="text"
               name="nombreUsuario"
@@ -185,7 +185,7 @@ export default function FormularioUsuario() {
 
           {mostrarRegistro && (
             <div className="mb-3">
-              <label className="form-label">Correo electrónico *</label>
+              <label id="textN" className="form-label">Correo electrónico *</label>
               <input
                 type="email"
                 name="emailUsuario"
@@ -235,7 +235,7 @@ export default function FormularioUsuario() {
             </div>
           )}
 
-          <button 
+          <button id="btn-shop"
             type="submit" 
             className="btn btn-dark px-4 w-100"
             disabled={cargando}
